@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cos.domain.user">
+	  <select id="select" resultType="com.cos.domain.UserVO">
+	 	 SELECT * FROM user WHERE userID = #{userID}
+	  </select>
+	 
+	  <select id="account" resultType="com.cos.domain.UserVO">
+	 	 SELECT * FROM user
+	  </select>
+   	  
+   	  <select id="check" resultType="com.cos.domain.UserVO">
+      	SELECT * FROM user WHERE userID = #{userID} and userPW = #{userPW}
+   	  </select>
+   	  
+   	  <insert id="insert">
+   	  	INSERT INTO user(userID,userPW,userName,userEmail,joinDate) VALUES(#{userID},#{userPW},#{userName},#{userEmail},now())
+   	  </insert>
+   	  
+   	  <delete id="delete"> <!-- resultType은 없으면 생략 -->
+		DELETE FROM user WHERE userID = #{userID}
+	  </delete>
+
+   	  
+ 	  <update id="update" >
+ 		UPDATE user SET userPW = #{userPW}, userEmail = #{userEmail} WHERE userID = #{userID}
+	  </update>
+
+</mapper>
